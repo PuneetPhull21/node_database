@@ -1,7 +1,7 @@
 let db_con = {
   host: "localhost",
   user: "root",
-  password: "",
+  password: "Nk210619@",
   database: "node_db1",
   dialect: "mysql",
 };

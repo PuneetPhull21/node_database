@@ -14,6 +14,9 @@ approuter.get('/roles_all',usercontroller.findallroles);
 approuter.get('/emp_all',usercontroller.findallemp);
 approuter.get('/emp_dep_all',usercontroller.findallemp_department);
 approuter.get('/emp_sal_all',usercontroller.findallemp_salaries);
+approuter.get('/users/:id',usercontroller.getuser);
+approuter.put('/users/update/:id',usercontroller.updateuser);
+approuter.delete('/users/delete/:id',usercontroller.deleteuser);
 
 
 

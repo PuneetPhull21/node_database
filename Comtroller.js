@@ -147,3 +147,70 @@ exports.findallemp_salaries = async (req,res)=>{
     }
     res.status(200).json(respone);
 }
+
+//find user by ID
+
+exports.getuser = async (req,res)=>{
+    try{
+    const userdetails = await User.findOne({where :{user_id:req.params.id}});
+    res.status(200).send({
+        status:200,
+        message:"details is fetch successfully ",
+        data:userdetails
+    })
+}
+catch(error){
+    return res.status(400).send({
+        status:400,
+        message:"there is some error",
+        errors:error
+    })
+}
+
+}
+
+
+//update the user
+
+exports.updateuser = async (req,res)=>{
+    try{
+ const updateuser = await User.update({
+     user_name:req.body.user_name
+ },{where:{user_id:req.params.id}});
+ return res.status(200).send({
+     user:updateuser,
+     message:"user is updated"
+ })
+}
+catch(error){
+  return res.status(400).send({
+  message:"there is some error",
+  status:400,
+  errors:error
+ })
+}
+}
+
+///delete the user
+
+exports.deleteuser = async(req,res)=>{
+    try{
+      const userdelete = await User.destroy({
+          where:{user_id:req.params.id}
+      })
+      return res.status(200).send({
+          status:200,
+          message:"user is deleted successfully",
+          user:userdelete
+      })
+    }
+      catch (error){
+        return res.status(400).send({
+            status:400,
+            message:"there is some error",
+            errors:error
+        }) 
+      }  
+    
+    
+}
