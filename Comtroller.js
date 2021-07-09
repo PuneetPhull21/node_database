@@ -1,4 +1,5 @@
 const { QueryTypes } = require('sequelize');
+const {authuser,auth_employee_details}= require('./validator/auth_users');
 const db = require('./Model');
 const User = db.tutorials;
 const Roles = db.roles_model;
@@ -22,11 +23,13 @@ exports.role = (req,res)=>{
       })
   })
 }
-exports.create = (req,res)=>{
+exports.create = async(req,res)=>{
+   let result = await authuser.validateAsync(req.body);
+   console.log(result)
     const user = {
-        user_id:req.body.user_id,
-        role_id:req.body.role_id,
-        user_name:req.body.user_name,
+        user_id:result.user_id,
+        role_id:result.role_id,
+        user_name:result.user_name,
     };
   User.create(user).then((data)=>{
     res.send(data)
@@ -38,13 +41,15 @@ exports.create = (req,res)=>{
   })
 }
 
-exports.employee_details= (req,res)=>{
+exports.employee_details= async (req,res)=>{
+    let result = await auth_employee_details.validateAsync(req.body);
+    console.log(result)
     const emp = {
-        user_id:req.body.user_id,
-        emp_id:req.body.emp_id,
-        country:req.body.country,
-        state:req.body.state,
-        department:req.body.department,
+        user_id:result.user_id,
+        emp_id:result.emp_id,
+        country:result.country,
+        state:result.state,
+        department:result.department,
     }
     Emp.create(emp).then((data)=>{
         res.send(data)
