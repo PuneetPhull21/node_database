@@ -1,11 +1,10 @@
 let db_con = {
   host: "localhost",
   user: "root",
-  password: "Nk210619@",
+  password: "",
   database: "node_db1",
   dialect: "mysql",
 };
-
 
 
 

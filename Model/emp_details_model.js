@@ -5,9 +5,12 @@ module.exports = (sequelize, Sequelize) => {
       user_id: {
         type: Sequelize.INTEGER,
         allowNULL: false,
+        onDelete: 'CASCADE',
+        onUpdate:'CASCADE', 
         references: {
           model: "users",
           key: "user_id",
+         
         },
       },
       emp_id: {
